@@ -57,7 +57,7 @@ if __name__ == '__main__':
     while True:
         start_time = time.time()
         upload_clinical_trials(collection_url)
-        work_time = int(time.time() - start_time) 
+        work_time = int(time.time() - start_time)
         print(work_time)
         print(14400 - work_time)
         time.sleep(14400 - work_time)

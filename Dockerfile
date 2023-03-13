@@ -13,14 +13,14 @@ RUN apt update && apt -qy install gcc libjpeg-dev libxslt-dev \
 
 RUN useradd -rms /bin/bash user && chmod 777 /opt /run
 
-WORKDIR /uspto_parser
+WORKDIR /ct_parser
 
 COPY --chown=user:user . .
 
-RUN chown -R user:user /uspto_parser
+RUN chown -R user:user /ct_parser
 
 RUN pip install -r requirements.txt
 
 USER user
 
-CMD ["python", "uspto_data_uploader.py"]
+CMD ["python", "ct_parser.py"]
