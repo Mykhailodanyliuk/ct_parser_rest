@@ -39,8 +39,10 @@ def upload_clinical_trials(ct_data_rest_url):
         zip_files = zip.namelist()
         zip_files.remove('Contents.txt')
         for index, file in enumerate(zip_files):
-            response = requests.get(
-                f'{ct_data_rest_url}?FullStudy.Study.ProtocolSection.IdentificationModule.NCTId={file[-16:-5]}')
+            try:
+                response = requests.get(f'{ct_data_rest_url}?FullStudy.Study.ProtocolSection.IdentificationModule.NCTId={file[-16:-5]}')
+            except:
+                continue
             if response.status_code == 200:
                 response_json = json.loads(response.text)
                 is_in_database = False if response_json.get('total') == 0 else True
